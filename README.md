@@ -1,4 +1,4 @@
-# jaisalmeria_handloom
+# Jaisalmeria Handlooms
 
 Jaisalmeria Handlooms
 
