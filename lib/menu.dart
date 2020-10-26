@@ -12,7 +12,7 @@ class MenuPage extends StatelessWidget {
           DrawerHeader(
             child: Text('Jaisalmeria Handloom',
               textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),),
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
           ),
           ListTile(
             title: Text('Home',
