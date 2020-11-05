@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jaisalmeria_handloom/catalogs.dart';
-import 'package:jaisalmeria_handloom/header.dart';
-import 'package:jaisalmeria_handloom/menu.dart';
+import 'package:jaisalmeria_handloom/pages/catalogs.dart';
+import 'package:jaisalmeria_handloom/pages/header.dart';
+import 'package:jaisalmeria_handloom/pages/menu.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

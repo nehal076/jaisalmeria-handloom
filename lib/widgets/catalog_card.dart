@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/catalog.dart';
 
-import '../catalog_products.dart';
+import '../pages/catalog_products.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CatalogCard extends StatelessWidget {
   final Catalog catalog;
@@ -33,7 +34,7 @@ class CatalogCard extends StatelessWidget {
                   image: new AssetImage(catalog.imageUrl),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.5), BlendMode.darken
+                      Colors.grey.withOpacity(0.5), BlendMode.darken
                   ),
                 ),
               ),
@@ -43,11 +44,27 @@ class CatalogCard extends StatelessWidget {
                 catalog.name,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white,
                   fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 2
+                    ..color = Colors.grey,
                 ),
               ),
             ),
+            //catalog.name.text.gray100.bold.size(22).makeCentered()
+            Center(
+              child: Text(
+                catalog.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            )
           ],
         ),
       ),

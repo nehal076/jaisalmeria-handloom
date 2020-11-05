@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jaisalmeria_handloom/widgets/catalog_card.dart';
 import 'package:jaisalmeria_handloom/widgets/product_card.dart';
 
-import 'models/catalog.dart';
+import '../models/catalog.dart';
 
 class CatalogProducts extends StatelessWidget {
 
@@ -35,7 +34,9 @@ class CatalogProducts extends StatelessWidget {
               padding: const EdgeInsets.all(5.0),
               mainAxisSpacing: 5.0,
               crossAxisSpacing: 5.0,
-              children: catalog.items.map((product) => ProductCard(product: product)).toList(),
+              children: catalog.items.map((product) {
+                return ProductCard(product: product, key: UniqueKey());
+              }).toList(),
             ),
           ]
         ),

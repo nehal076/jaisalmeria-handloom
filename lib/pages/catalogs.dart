@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:jaisalmeria_handloom/models/catalog.dart';
 import 'package:jaisalmeria_handloom/widgets/catalog_card.dart';
 
-import 'models/catalog.dart';
 
 class CatalogsPage extends StatelessWidget {
   @override

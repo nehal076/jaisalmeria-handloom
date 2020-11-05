@@ -26,6 +26,8 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter_open_whatsapp: ^0.1.2
   url_launcher: ^5.7.7
+  velocity_x: 0.5.0
+  carousel_pro: ^1.0.0
 
 dev_dependencies:
   flutter_test:
