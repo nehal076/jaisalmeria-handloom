@@ -12,7 +12,23 @@ class CatalogProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(catalog.name),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: Icon(Icons.search),
+                  ),
+                  Icon(Icons.shopping_cart),
+                ],
+              )
+            ]
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

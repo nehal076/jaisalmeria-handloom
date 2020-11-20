@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/catalog.dart';
 
 import '../pages/catalog_products.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class CatalogCard extends StatelessWidget {
   final Catalog catalog;

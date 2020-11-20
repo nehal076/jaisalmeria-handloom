@@ -15,8 +15,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Jaisalmeria Handloom'),
+      home: MyHomePage(
+        title: 'Jaisalmeria Handloom'
+      ),
     );
   }
 }

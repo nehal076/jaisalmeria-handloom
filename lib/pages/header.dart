@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:jaisalmeria_handloom/pages/catalogs.dart';
 
 class HeaderPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -48,7 +50,9 @@ class HeaderPage extends StatelessWidget {
             Align(
               alignment: FractionalOffset.bottomCenter,
               child: MaterialButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Scrollable.ensureVisible(CatalogsPage.dataKey.currentContext),
+                },
                 child: Transform.rotate(
                   angle: 1.5,
                   child: Icon(

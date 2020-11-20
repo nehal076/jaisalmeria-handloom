@@ -20,7 +20,16 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.transparent,
       drawer: MenuPage(),
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: Icon(Icons.search),
+            ),
+            Icon(Icons.shopping_cart)
+          ]
+        ),
       ),
       body: Stack(
         fit: StackFit.expand,

@@ -6,6 +6,9 @@ import 'package:jaisalmeria_handloom/widgets/catalog_card.dart';
 
 
 class CatalogsPage extends StatelessWidget {
+
+  static final dataKey = new GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Container(
