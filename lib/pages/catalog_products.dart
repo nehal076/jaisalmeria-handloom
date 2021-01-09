@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:jaisalmeria_handloom/widgets/product_card.dart';
 
 import '../models/catalog.dart';
@@ -12,23 +13,7 @@ class CatalogProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(catalog.name),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Icon(Icons.search),
-                  ),
-                  Icon(Icons.shopping_cart),
-                ],
-              )
-            ]
-        ),
-      ),
+      appBar: MyAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

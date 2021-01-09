@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jaisalmeria_handloom/models/cart.dart';
 import 'package:jaisalmeria_handloom/models/catalog.dart';
+import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:jaisalmeria_handloom/pages/PaymentScreen.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetail extends StatefulWidget {
   final Product product;
@@ -23,24 +27,9 @@ class _ProductDetailState extends State<ProductDetail> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(product.name),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Icon(Icons.search),
-                  ),
-                  Icon(Icons.shopping_cart),
-                ],
-              )
-            ]
-        ),
-      ),
+      appBar: MyAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
@@ -120,7 +109,9 @@ class _ProductDetailState extends State<ProductDetail> {
                   children: [
                     SizedBox(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            cart.addItem(product.id, product.name, double.tryParse(product.price), product.imageUrl);
+                          },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 getColorFromHex('#d1d1d1')),
@@ -136,7 +127,9 @@ class _ProductDetailState extends State<ProductDetail> {
                     ),
                     SizedBox(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> PaymentScreen(amount: product.price,)));
+                          },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 getColorFromHex('#56a8e2')),

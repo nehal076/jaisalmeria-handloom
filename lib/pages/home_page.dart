@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/pages/catalogs.dart';
 import 'package:jaisalmeria_handloom/pages/header.dart';
 import 'package:jaisalmeria_handloom/pages/menu.dart';
+import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -19,18 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       drawer: MenuPage(),
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: Icon(Icons.search),
-            ),
-            Icon(Icons.shopping_cart)
-          ]
-        ),
-      ),
+      appBar: MyAppBar(),
       body: Stack(
         fit: StackFit.expand,
         children: [

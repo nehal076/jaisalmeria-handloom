@@ -2,6 +2,7 @@
     package="com.example.jaisalmeria_handloom">
    <application
         android:label="jaisalmeria_handloom"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
