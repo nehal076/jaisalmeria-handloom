@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: ListView(
+        physics: BouncingScrollPhysics(),
         controller: _scrollController,
         children: [
           HeaderPage(_scrollController),
