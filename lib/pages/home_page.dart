@@ -21,11 +21,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final _scrollController = ScrollController();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Vx.white,
