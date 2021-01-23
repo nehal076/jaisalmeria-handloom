@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class MyAppBar extends PreferredSize{
 
   @override
-  Size get preferredSize => Size.fromHeight(60);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +15,15 @@ class MyAppBar extends PreferredSize{
     return AppBar(
       actions: [
         IconButton(icon: Icon(Icons.search), onPressed: () {}),
-        IconButton(icon: 
-        (cart.itemCount != 0) ? Badge(
-          badgeContent: Text(cart.itemCount.toString()),
-          child: Icon(Icons.shopping_cart)
-        ) : Icon(Icons.shopping_cart), onPressed: () {
-          Navigator.of(context).pushNamed(CartScreen.routeName);
-        }),
+        IconButton(
+            icon: (cart.itemCount != 0)
+                ? Badge(
+                    badgeContent: Text(cart.itemCount.toString()),
+                    child: Icon(Icons.shopping_cart))
+                : Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.of(context).pushNamed(CartScreen.routeName);
+            }),
       ],
     );
   }

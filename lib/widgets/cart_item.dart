@@ -13,6 +13,7 @@ class CartItems extends StatelessWidget {
   CartItems(this.id, this.productId, this.price, this.quantity, this.name, this.imageUrl);
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
     return Dismissible(
       key: ValueKey(id),
       direction: DismissDirection.endToStart,
@@ -25,8 +26,22 @@ class CartItems extends StatelessWidget {
       child: ListTile(
         leading:  Image.asset(imageUrl),
         title: Text(name),
-        subtitle: Text('Total: ₹ ${(price * quantity)}'),
-        trailing: Text('$quantity x'),
+        subtitle: Row(
+          children: [
+            (quantity == 1) ? 
+            IconButton(icon: Icon(Icons.delete), onPressed: () {
+              cart.removeItem(productId);
+            }) :
+            IconButton(icon: Icon(Icons.do_disturb_on_outlined), onPressed: () {
+              cart.removeSingleItem(productId);
+            }),
+            Text('${(quantity)}'),
+            IconButton(icon: Icon(Icons.add_circle_outline), onPressed: () {
+              cart.addItem(productId, name, price, imageUrl);
+            }),
+          ]
+        ),
+        trailing: Text('₹ ${(price * quantity)}'),
       ),
     );
   }

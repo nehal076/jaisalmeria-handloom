@@ -19,31 +19,43 @@ class HeaderPage extends StatelessWidget {
           children: <Widget>[
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/jhlogo.jpg'),
+              backgroundImage: AssetImage('assets/images/jh.jpg'),
             ),
-            Text('Jaisalmeria Handloom',
+            Padding(
+              padding: EdgeInsets.fromLTRB(80, 30, 80, 0),
+              child: Text('Jaisalmeria Handloom',
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 1.2,
+                  style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold)
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text('We deliver the product which enhances the look of your room. We make your dream bedroom complete! ',
                 textAlign: TextAlign.center,
-                textScaleFactor: 1.2,
-                style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold)
-            ),
-            Text('We deliver the product which enhances the look of your room. We make your dream bedroom complete! ',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30),
+                style: TextStyle(fontSize: 23),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                FilterChip(
-                  label: Text('📞 Call'),
-                  backgroundColor: Colors.black,
-                  labelStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
-                  onSelected: (b){launch("tel://+919414130356");}
+                Transform(
+                  transform: new Matrix4.identity()..scale(1.2),
+                  child: FilterChip(
+                    label: Text('📞 Call'),
+                    backgroundColor: Colors.black,
+                    labelStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
+                    onSelected: (b){launch("tel://+919414130356");}
+                  ),
                 ),
-                FilterChip(
-                  label: Text('💬 Chat'),
-                  backgroundColor: Colors.black,
-                  labelStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
-                  onSelected: (b){FlutterOpenWhatsapp.sendSingleMessage("919414130356", "Hello");}
+                Transform(
+                  transform: new Matrix4.identity()..scale(1.2),
+                  child: FilterChip(
+                    label: Text('💬 Chat'),
+                    backgroundColor: Colors.black,
+                    labelStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white),
+                    onSelected: (b){FlutterOpenWhatsapp.sendSingleMessage("919414130356", "Hello");}
+                  ),
                 ),
               ],
             ),
@@ -53,17 +65,10 @@ class HeaderPage extends StatelessWidget {
                 onPressed: () => {
                   Scrollable.ensureVisible(CatalogsPage.dataKey.currentContext),
                 },
-                child: Transform.rotate(
-                  angle: 1.5,
-                  child: Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Colors.black,
-                    size: 30.0,
-                  ),
+                child: Icon(Icons.expand_more_rounded),
                 ),
               ),
-            ),
-          ],
+          ]
         ),
       ),
     );
