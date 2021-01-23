@@ -33,7 +33,7 @@ class CatalogCard extends StatelessWidget {
                             gradient: LinearGradient(
                                 colors: [Vx.green500, Vx.teal500]),
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(10.0),
+                              topRight: Radius.circular(20.0),
                             )))
                         .p8
                         .make()))

@@ -16,10 +16,15 @@ class MyAppBar extends PreferredSize {
       backgroundColor: Colors.transparent,
       iconTheme: IconThemeData(color: Colors.black),
       leadingWidth: 40.0,
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 16.0),
-        child: Image.asset("assets/icon-sidebar.png"),
-      ),
+      // leading: InkWell(
+      //   onTap: () {
+      //     Scaffold.of(context).openDrawer();
+      //   },
+      //   child: Padding(
+      //     padding: const EdgeInsets.only(left: 16.0),
+      //     child: Image.asset("assets/icon-sidebar.png"),
+      //   ),
+      // ),
       elevation: 0.0,
       actions: [
         IconButton(icon: Icon(CupertinoIcons.search), onPressed: () {}),
