@@ -35,7 +35,7 @@ class MyAppBar extends PreferredSize {
                     child: Icon(CupertinoIcons.shopping_cart))
                 : Icon(CupertinoIcons.shopping_cart),
             onPressed: () {
-              Navigator.of(context).pushNamed(CartScreen.routeName);
+              Navigator.of(context).pushNamed('/cart');
             }),
       ],
     );

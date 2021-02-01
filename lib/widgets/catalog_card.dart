@@ -14,7 +14,38 @@ class CatalogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return 
+    
+    // Container(
+    //   width: 140.0,
+    //   child: Card(
+    //     clipBehavior: Clip.antiAlias,
+    //     child: InkWell(
+    //       key: key,
+    //       onTap: () {
+    //         Navigator.push(context, MaterialPageRoute(builder: (context) => CatalogProducts(catalog: catalog)));
+    //       },
+    //       child: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: <Widget>[
+    //           SizedBox(
+    //             height: (MediaQuery.of(context).size.width / 2) - 90,
+    //             width: double.infinity,
+    //             child: Image(
+    //               fit: BoxFit.cover,
+    //               image: AssetImage(catalog.imageUrl),
+    //             ),
+    //           ),
+    //           ListTile(
+    //               title: Text(catalog.name,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 16))
+    //           )
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    
+    
+    InkWell(
         onTap: () {
           Navigator.push(
             context,

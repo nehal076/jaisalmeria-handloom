@@ -4,6 +4,7 @@ import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:jaisalmeria_handloom/pages/catalogs.dart';
 import 'package:jaisalmeria_handloom/pages/header.dart';
 import 'package:jaisalmeria_handloom/pages/menu.dart';
+import 'package:jaisalmeria_handloom/pages/new_arrivals.dart';
 import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -24,19 +25,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Vx.white,
-      drawer: MenuPage(),
+      drawer: Drawer(
+        child: MenuPage(),
+      ),
       appBar: MyAppBar(),
-      floatingActionButton: Row(
+      floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: UniqueKey(),
             tooltip: "Call",
             onPressed: () => launch("tel://+919414130356"),
             backgroundColor: Colors.black,
             child: Icon(CupertinoIcons.phone),
           ),
-          10.widthBox,
+          10.heightBox,
           FloatingActionButton(
+            heroTag: UniqueKey(),
             tooltip: "Chat",
             onPressed: () =>
                 FlutterOpenWhatsapp.sendSingleMessage("919414130356", "Hello"),
@@ -50,7 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
         controller: _scrollController,
         children: [
           HeaderPage(_scrollController),
-          CatalogsPage(),
+          NewArrivals(),
+          CatalogsPage()            
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/catalog.dart';
@@ -14,57 +15,130 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
-    return InkWell(
-      key: key,
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => ProductDetail(product: product)),
-      ),
-      child: Hero(
-        tag: product.id,
-        child: VxAnimatedBox(
-                child: Align(
-          alignment: Alignment.bottomLeft,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              product.name.text.white.semiBold.make(),
-              5.widthBox,
-              "₹${product.price}".text.white.bold.make(),
-              Spacer(),
-              InkWell(
-                onTap: () {
-                  Scaffold.of(context).showSnackBar(SnackBar(
-                    duration: Duration(seconds: 3),
-                    content: Text('Item Added to Cart'),
-                  ));
-                  cart.addItem(product.id, product.name,
-                      double.tryParse(product.price), product.imageUrl);
-                },
-                child:
-                    Icon(CupertinoIcons.cart_badge_plus, color: Colors.white),
-              ).px4()
+    return Container(
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: () {
+             Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProductDetail(product: product)),
+            );
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Hero(
+                tag: product.id,
+                child: SizedBox(
+                  child: Image(
+                    fit: BoxFit.fill,
+                    image: AssetImage( product.imageUrl),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: ListTile(
+                  title: Text(product.name,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16
+                    ),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2.0),
+                            child: Text("₹${product.price}", style: TextStyle(
+                              color: Theme.of(context).accentColor,
+                              fontWeight: FontWeight.w700,
+                            )),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 6.0),
+                            child: Text("₹${product.price}", style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.grey,
+                                decoration: TextDecoration.lineThrough
+                            )),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
-          )
-              .box
-              .withDecoration(BoxDecoration(
-                  gradient: LinearGradient(colors: [Vx.red500, Vx.orange500]),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))))
-              .p8
-              .make(),
-        ))
-            .bgImage(DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  product.imageUrl,
-                )))
-            .rounded
-            .shadowMd
-            .make(),
+          ),
+        ),
       ),
+    ); 
+
+    
+    
+    // InkWell(
+    //   key: key,
+      // onTap: () => Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //       builder: (context) => ProductDetail(product: product)),
+      // ),
+    //   child: Hero(
+    //     tag: product.id,
+    //     child: VxAnimatedBox(
+    //             child: Align(
+    //       alignment: Alignment.bottomLeft,
+    //       child: Row(
+    //         crossAxisAlignment: CrossAxisAlignment.center,
+    //         children: [
+    //           product.name.text.white.semiBold.make(),
+    //           5.widthBox,
+    //           "₹${product.price}".text.white.bold.make(),
+    //           Spacer(),
+    //           InkWell(
+    //             key: key,
+    //             onTap: () {
+    //               Scaffold.of(context).showSnackBar(SnackBar(
+    //                 duration: Duration(seconds: 3),
+    //                 content: Text('Item Added to Cart'),
+    //               ));
+    //               cart.addItem(product.id, product.name,
+    //                   double.tryParse(product.price), product.imageUrl);
+    //             },
+    //             child:
+    //                 Icon(CupertinoIcons.cart_badge_plus, color: Colors.white),
+    //           ).px4()
+    //         ],
+    //       )
+    //           .box
+    //           .withDecoration(BoxDecoration(
+    //               // gradient: LinearGradient(colors: [Vx.gray100, Vx.orange500]),
+    //               borderRadius: BorderRadius.only(
+    //                   bottomLeft: Radius.circular(15.0),
+    //                   bottomRight: Radius.circular(15.0))))
+    //           .p8
+    //           .make(),
+    //     ))
+    //         .bgImage(DecorationImage(
+    //             fit: BoxFit.cover,
+    //             image: AssetImage(
+    //               product.imageUrl,
+    //             )))
+    //         .rounded
+    //         .shadowMd
+    //         .make(),
+    //   ),
+
+
+
+
+
       // child: Container(
       //   height: 1900,
       //   child: Card(
@@ -98,16 +172,5 @@ class ProductCard extends StatelessWidget {
       //     ),
       //   ),
       // ),
-    );
-  }
-}
-
-Color getColorFromHex(String hexColor) {
-  hexColor = hexColor.replaceAll("#", "");
-  if (hexColor.length == 6) {
-    hexColor = "FF" + hexColor;
-  }
-  if (hexColor.length == 8) {
-    return Color(int.parse("0x$hexColor"));
   }
 }

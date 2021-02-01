@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jaisalmeria_handloom/models/cart.dart';
+import 'package:jaisalmeria_handloom/models/wishlist.dart';
 import 'package:jaisalmeria_handloom/pages/cart_screen.dart';
+import 'package:jaisalmeria_handloom/pages/login_page.dart';
+import 'package:jaisalmeria_handloom/pages/sign_up.dart';
+import 'package:jaisalmeria_handloom/pages/wishlist_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,6 +28,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: Cart(),
+        ),
+         ChangeNotifierProvider.value(
+          value: Wishlist(),
         )
       ],
       child: MaterialApp(
@@ -35,7 +42,10 @@ class MyApp extends StatelessWidget {
             textTheme: GoogleFonts.latoTextTheme()),
         home: MyHomePage(title: 'Jaisalmeria Handloom'),
         routes: {
-          CartScreen.routeName: (ctx) => CartScreen(),
+          '/cart': (ctx) => CartScreen(),
+          '/auth': (ctx) => LoginPage(),
+          '/signup': (ctx) => SignupPage(),
+          '/wishlist': (ctx) => WishlistScreen(),
         },
       ),
     );

@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../models/cart.dart';
 
 class CartScreen extends StatelessWidget {
-  static const routeName = '/cart';
 
   @override
   Widget build(BuildContext context) {

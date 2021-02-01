@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'PaymentScreen.dart';
+import 'package:jaisalmeria_handloom/pages/payment_screen.dart';
 
 class AddressPage extends StatefulWidget {
   AddressPage({double totalAmount});

@@ -1,3 +1,5 @@
+import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -8,23 +10,14 @@ class HeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height -
-          Scaffold.of(context).appBarMaxHeight,
+      height: MediaQuery.of(context).size.height - Scaffold.of(context).appBarMaxHeight,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Row(
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Jaisalmeria Handloom',
-                        textAlign: TextAlign.center,
-                        textScaleFactor: 1.2,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline5
-                            .copyWith(fontWeight: FontWeight.bold))
-                    .wHalf(context),
                 ClipOval(
                   child: Image.asset(
                     "assets/images/jh.jpg",
@@ -32,10 +25,59 @@ class HeaderPage extends StatelessWidget {
                     width: 80.0,
                   ),
                 ),
-                20.widthBox,
+                Text('Jaisalmeria Handloom', textAlign: TextAlign.center,
+                        textScaleFactor: 1.2,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(fontWeight: FontWeight.bold))
+                    
+                
               ],
-            ).p16(),
-            Image.asset("assets/images/background.jpg"),
+            ),
+         SizedBox(
+          height: kIsWeb ? MediaQuery.of(context).size.height / 2 : 260,
+          width: MediaQuery.of(context).size.width,
+          child: Carousel(
+            images: [
+              Image(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/images/background.jpg"),
+              ),
+              Image(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/images/banner-2.jpg"),
+              ),
+              Image(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/images/banner-3.jpg"),
+              ),
+              Image(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/images/banner-4.jpg"),
+              ),
+            ],
+            dotSize: 4.0,
+            dotSpacing: 15.0,
+            dotColor: Colors.lightGreenAccent,
+            indicatorBgPadding: 5.0,
+            dotBgColor: Colors.transparent,
+            borderRadius: true,
+            moveIndicatorFromBottom: 180.0,
+            noRadiusForIndicator: true,
+            ),
+          ),
+          // SizedBox(
+          //   child: Carousel(
+          //   autoplay: false,
+          //   boxFit: BoxFit.cover,
+          //   dotBgColor: Colors.transparent,
+          //   dotColor: Colors.black.withOpacity(0.5),
+          //   images: [
+          //       Image.asset("assets/images/background.jpg"),
+          //       Image.asset("assets/images/banner-2.jpg"),
+          //     ]
+          // )),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
@@ -52,7 +94,8 @@ class HeaderPage extends StatelessWidget {
                   _scrollController.animateTo(context.screenHeight,
                       duration: Duration(seconds: 1), curve: Curves.linear);
                 },
-                child: Icon(Icons.expand_more_rounded),
+                color: Colors.black,
+                child: Text('Shop Now', style: TextStyle(color: Colors.white),),
               ),
             ),
           ]),

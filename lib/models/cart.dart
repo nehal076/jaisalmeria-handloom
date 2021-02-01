@@ -52,6 +52,14 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
+    bool checkIfAdded(String pdtid, String name, double price, String imageUrl) {
+    if(_items.containsKey(pdtid)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void removeItem(String id) {
     _items.remove(id);
     notifyListeners();
