@@ -33,7 +33,9 @@ class ProductCard extends StatelessWidget {
                 tag: product.id,
                 child: SizedBox(
                   child: Image(
-                    fit: BoxFit.fill,
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.fitHeight,
                     image: AssetImage( product.imageUrl),
                   ),
                 ),
@@ -67,13 +69,23 @@ class ProductCard extends StatelessWidget {
                                 color: Colors.grey,
                                 decoration: TextDecoration.lineThrough
                             )),
-                          )
+                          ),
                         ],
                       ),
                     ],
                   ),
                 ),
-              )
+              ),
+              [
+                VxRating(
+                  size: 13,
+                  selectionColor: Colors.orange,
+                  isSelectable: false,
+                  onRatingUpdate: (value) {},
+                ),
+                5.widthBox,
+                "(100)".text.xs.gray600.make(),
+              ].row().pLTRB(16, 8, 0, 0)
             ],
           ),
         ),

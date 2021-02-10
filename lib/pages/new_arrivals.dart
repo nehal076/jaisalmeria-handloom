@@ -32,7 +32,7 @@ List<Product> productList = [
           ), 
            Container(
             margin: EdgeInsets.symmetric(vertical: 8.0),
-            height: 240.0,
+            height: 260.0,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: productList.map((i) {
@@ -61,9 +61,28 @@ List<Product> productList = [
                                 
                               
                               ListTile(
-                                title: Text(i.name,style: TextStyle(fontSize: 14)),
-                                subtitle: Text('₹${i.price}', style: TextStyle(color: Theme.of(context).accentColor,fontWeight: FontWeight.w700)),
-                              )
+                                title: Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: Text(i.name,style: TextStyle(fontSize: 14)),
+                                ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('₹${i.price}', style: TextStyle(color: Theme.of(context).accentColor,fontWeight: FontWeight.w700)),
+                                    [
+                                      VxRating(
+                                        size: 13,
+                                        selectionColor: Colors.orange,
+                                        isSelectable: false,
+                                        onRatingUpdate: (value) {},
+                                      ),
+                                      5.widthBox,
+                                      "(100)".text.xs.gray600.make(),
+                                    ].row()
+                                  ],
+                                ),
+                              ),
+                              
                             ],
                           ),
                         ),

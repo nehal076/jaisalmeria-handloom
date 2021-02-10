@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/pages/address_page.dart';
 import 'package:jaisalmeria_handloom/pages/home_page.dart';
+import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:jaisalmeria_handloom/widgets/cart_item.dart';
 import 'package:provider/provider.dart';
 import '../models/cart.dart';
@@ -11,12 +12,8 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'My Cart',
-          style: TextStyle(fontSize: 30, color: Theme.of(context).accentColor),
-        ),
-      ),
+      backgroundColor: Colors.white,
+      appBar: MyAppBar(),
       body: cart.itemCount >= 1 ? Column(
         children: <Widget>[
           Expanded(
@@ -87,15 +84,15 @@ class CartScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.shopping_cart_outlined),
+            Image(image: AssetImage('assets/images/empty_cart.png')),
             Text('YOUR CART IS EMPTY',style: TextStyle(color: Colors.black, fontSize: 20),),
-            Text('Please add some products.',style: TextStyle(color: Colors.black, fontSize: 18),),
-            RaisedButton(
+            Text('Add products you\'d like to buy.',style: TextStyle(color: Colors.black, fontSize: 18),),
+            ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyHomePage()));
                 },
                 child: Text(
-                  'Explore Products',
+                  'Explore',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 )),
           ],

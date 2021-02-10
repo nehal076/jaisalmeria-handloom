@@ -33,17 +33,27 @@ class CatalogsPage extends StatelessWidget {
       ],
     ),
       20.heightBox,
-      GridView.count(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          crossAxisCount: kIsWeb? 6 : 2,
-          childAspectRatio: 1.0,
-          mainAxisSpacing: 10.0,
-          crossAxisSpacing: 10.0,
+      Container(
+         margin: EdgeInsets.symmetric(vertical: 8.0),
+          height: 150.0,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
           children: allCatalogs
-              .map((catalog) => CatalogCard(catalog: catalog))
-              .toList(),
+          .map((catalog) => CatalogCard(catalog: catalog))
+          .toList(),
         ),
+      ),
+      // GridView.count(
+      //     shrinkWrap: true,
+      //     physics: NeverScrollableScrollPhysics(),
+      //     crossAxisCount: context.isMobile? 2 : 6,
+      //     childAspectRatio: 1.0,
+      //     mainAxisSpacing: 10.0,
+      //     crossAxisSpacing: 10.0,
+      //     children: allCatalogs
+      //         .map((catalog) => CatalogCard(catalog: catalog))
+      //         .toList(),
+      //   ),
       ]).p16();
   }
 }

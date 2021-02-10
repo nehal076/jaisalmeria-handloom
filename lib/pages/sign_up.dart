@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:jaisalmeria_handloom/models/constants.dart';
+import 'package:jaisalmeria_handloom/services/api_manager.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -111,7 +112,7 @@ class _SignupPageState extends State<SignupPage> {
                             onTap: () {
                               print('tapped');
                               setState(() {
-                                _futureUser = createUser(_firstName.text,
+                                _futureUser = ApiManager.registerUser(_firstName.text,
                                 _lastName.text, _email.text, _password.text);
                               });
                             },
@@ -162,36 +163,16 @@ class _SignupPageState extends State<SignupPage> {
                   future: _futureUser,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return Text(snapshot.data.firstName);
+                      return Text("Success");
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     }
-                    return CircularProgressIndicator();
+                    return Center(
+                      child: CircularProgressIndicator()
+                    );
                   },
                 ),
         ));
-  }
-}
-
-Future<User> createUser(String firstName, String lastName, String email, String userPassword) async {
-  final http.Response response = await http.post(
-    BACKEND_URL + '/userRegister',
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'firstName': firstName,
-      'lastName': lastName,
-      'emailId': email,
-      'userPassword': userPassword,
-    }),
-  );
-  
-  if (response.statusCode == 0) {
-    return User.fromJson(jsonDecode(response.body));
-  } else {
-    print(jsonDecode(response.body));
-    throw Exception('Failed to create user.');
   }
 }
 
@@ -209,6 +190,20 @@ class User {
       lastName: json['lastName'],
       email: json['email'],
       userPassword: json['userPassword'],
+    );
+  }
+}
+
+class SignInUser {
+  final String emailId;
+  final String password;
+
+  SignInUser({this.emailId, this.password});
+
+  factory SignInUser.fromJson(Map<String, dynamic> json) {
+    return SignInUser(
+      emailId: json['email'],
+      password: json['password'],
     );
   }
 }

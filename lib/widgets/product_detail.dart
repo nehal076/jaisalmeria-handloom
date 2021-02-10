@@ -107,6 +107,8 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                           SizedBox(height: 4.0),
                           _buildMoreInfoData(product),
                           SizedBox(height: 24.0),
+                          _buildComments(context),
+                          _buildSimilarProducts(context),
                         ],
                       )
                     ),
@@ -419,3 +421,268 @@ _buildMoreInfoData(Product product) {
     ),
   );
 }
+
+
+_buildComments(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 1.0, color: Colors.black12),
+          bottom: BorderSide(width: 1.0, color: Colors.black12),
+        ),
+      ),
+      width: MediaQuery.of(context).size.width,
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  "Comments",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black54),
+                ),
+                Text(
+                  "View All",
+                  style: TextStyle(fontSize: 18.0, color: Colors.blue),
+                  textAlign: TextAlign.end,
+                ),
+              ],
+            ),
+            SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                VxRating(
+                  size: 13,
+                  selectionColor: Colors.orange,
+                  isSelectable: false,
+                  onRatingUpdate: (value) {},
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  "1250 Comments",
+                  style: TextStyle(color: Colors.black54),
+                )
+              ],
+            ),
+            SizedBox(
+              child: Divider(
+                color: Colors.black26,
+                height: 4,
+              ),
+              height: 24,
+            ),
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage(
+                'assets/images/no_user.png'),
+              ),
+              subtitle: Text(
+                  "Greatt material quality and full value for money. I would recommend to go for it without second thought."),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  VxRating(
+                  size: 13,
+                  selectionColor: Colors.orange,
+                  isSelectable: false,
+                  onRatingUpdate: (value) {},
+                ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    "07 Feb 2020",
+                    style: TextStyle(fontSize: 12, color: Colors.black54),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Divider(
+                color: Colors.black26,
+                height: 4,
+              ),
+              height: 24,
+            ),
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage(
+                'assets/images/no_user.png'),
+              ),
+              subtitle: Text(
+                  "Material quality is very good. I loved the product."),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  VxRating(
+                    size: 13,
+                    selectionColor: Colors.orange,
+                    isSelectable: false,
+                    onRatingUpdate: (value) {},
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    "15 Sep 2019",
+                    style: TextStyle(fontSize: 12, color: Colors.black54),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Divider(
+                color: Colors.black26,
+                height: 4,
+              ),
+              height: 24,
+            ),
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage(
+                'assets/images/no_user.png'),
+              ),
+              subtitle: Text(
+                  "Quick delivery and excellent quality!"),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  VxRating(
+                    size: 13,
+                    selectionColor: Colors.orange,
+                    isSelectable: false,
+                    onRatingUpdate: (value) {},
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    "25 Sep 2019",
+                    style: TextStyle(fontSize: 12, color: Colors.black54),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
+ _buildSimilarProducts(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  "Similar Items",
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black54),
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    print("Clicked");
+                  },
+                  child: Text(
+                    "View All",
+                    style: TextStyle(fontSize: 18.0, color: Colors.blue),
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        buildTrending()
+      ],
+    );
+  }
+
+  buildTrending() {
+    List<Product> productList = [
+      Product(id: "2", name: 'Bedsheet', imageUrl:'assets/product/IMG-20200908-WA0058.jpg', price: '299', images: []),
+      Product(id: "102", name: 'Curtain', imageUrl:'assets/catalog/curtain.jpg', price: '391', images: []),
+      Product(id: "202", name: 'Cushion', imageUrl:'assets/catalog/cushion.jpg', price: '391', images: []),
+      Product(id: "301", name: 'Towel', imageUrl:'assets/catalog/towels.jpg', price: '391',images: []),
+      Product(id: "401", name: 'Fridge Cover', imageUrl:'assets/catalog/fridgecover.jpg', price: '391',images: []),
+      Product(id: "501", name: 'Comforter', imageUrl:'assets/catalog/comforter.jpg', price: '391', images: []),
+    ];
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8.0),
+      height: 260.0,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: productList.map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return Container(
+                width: 140.0,
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, '/products',
+                          arguments: i);
+                    },
+                    child: Column(
+                      crossAxisAlignment:CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 160,
+                          child: Image(
+                                fit: BoxFit.cover,
+                                image: AssetImage(i.imageUrl),
+                              ),
+                            ),
+                        ListTile(
+                          title: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Text(i.name,style: TextStyle(fontSize: 14)),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('₹${i.price}', style: TextStyle(color: Theme.of(context).accentColor,fontWeight: FontWeight.w700)),
+                              [
+                                VxRating(
+                                  size: 13,
+                                  selectionColor: Colors.orange,
+                                  isSelectable: false,
+                                  onRatingUpdate: (value) {},
+                                ),
+                                5.widthBox,
+                                "(100)".text.xs.gray600.make(),
+                              ].row()
+                            ],
+                          ),
+                        ),
+                        
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        }).toList(),
+      ),
+    );
+  }

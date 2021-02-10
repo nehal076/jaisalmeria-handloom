@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:jaisalmeria_handloom/main.dart';
+import 'package:jaisalmeria_handloom/models/responses/logout_modal.dart';
+import 'package:jaisalmeria_handloom/models/responses/login_modal.dart';
+import 'package:jaisalmeria_handloom/services/api_manager.dart';
 
 class MenuPage extends StatefulWidget {
+
+  final LoginModal user;
+
+  const MenuPage({Key key, this.user}) : super(key: key);
   @override
   _MenuPage createState() => _MenuPage();
 }
@@ -18,11 +26,11 @@ class _MenuPage extends State<MenuPage> {
             image: AssetImage('assets/images/background.jpg'),
           )),
           currentAccountPicture: CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://avatars.githubusercontent.com/u/32421196'),
+            backgroundImage: AssetImage(
+                'assets/images/no_user.png'),
           ),
-          accountEmail: Text('nehal.jaisalmeria@gmail.com', style: TextStyle(color: Colors.black),),
-          accountName: Text('Nehal Jaisalmeria', style: TextStyle(color: Colors.black)),
+          accountEmail: Text(widget.user != null? widget.user.data.emailId: '', style: TextStyle(color: Colors.black),),
+          accountName: Text(widget.user != null? widget.user.data.firstName +' '+widget.user.data.lastName : 'Welcome, guest', style: TextStyle(color: Colors.black)),
         ),
         Expanded(
           child: ListView(
@@ -89,6 +97,7 @@ class _MenuPage extends State<MenuPage> {
                   Navigator.pushNamed(context, '/cart');
                 },
               ),
+              if(widget.user == null)
               ListTile(
                 leading: Icon(Icons.lock, color: Theme.of(context).accentColor),
                 title: Text('Login'),
@@ -110,8 +119,11 @@ class _MenuPage extends State<MenuPage> {
                 leading: Icon(Icons.exit_to_app,
                     color: Theme.of(context).accentColor),
                 title: Text('Logout'),
-                onTap: () async {
-                  
+                onTap: () {
+                  setState(() {
+                    ApiManager.logoutUser(widget.user.data.token, widget.user.data.userId);
+                    // MyApp(user: null);
+                  });
                 },
               )
             ],

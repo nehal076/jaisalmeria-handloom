@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+import 'package:jaisalmeria_handloom/models/responses/login_modal.dart';
+import 'package:jaisalmeria_handloom/pages/best_selling.dart';
 import 'package:jaisalmeria_handloom/pages/catalogs.dart';
 import 'package:jaisalmeria_handloom/pages/header.dart';
 import 'package:jaisalmeria_handloom/pages/menu.dart';
@@ -9,10 +10,13 @@ import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'categories_view.dart';
+
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, this.title, this.user}) : super(key: key);
 
   final String title;
+  final LoginModal user;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -26,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Vx.white,
       drawer: Drawer(
-        child: MenuPage(),
+        child: MenuPage(user: widget.user),
       ),
       appBar: MyAppBar(),
       floatingActionButton: Column(
@@ -43,8 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             heroTag: UniqueKey(),
             tooltip: "Chat",
-            onPressed: () =>
-                FlutterOpenWhatsapp.sendSingleMessage("919414130356", "Hello"),
+            onPressed: () {},
+                // FlutterOpenWhatsapp.sendSingleMessage("919414130356", "Hello"),
             backgroundColor: Colors.black,
             child: Icon(CupertinoIcons.chat_bubble),
           )
@@ -54,11 +58,23 @@ class _MyHomePageState extends State<MyHomePage> {
         physics: BouncingScrollPhysics(),
         controller: _scrollController,
         children: [
+          CategoriesView(),
           HeaderPage(_scrollController),
+          SizedBox(height: 20),
           NewArrivals(),
-          CatalogsPage()            
+          BestSelling(),
+          CatalogsPage(),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Image(
+                fit: BoxFit.fitHeight,
+                image: AssetImage('assets/images/banner-5.jpg')),
+          )     
         ],
       ),
     );
   }
 }
+
+
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/wishlist.dart';
 import 'package:jaisalmeria_handloom/pages/home_page.dart';
+import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:jaisalmeria_handloom/widgets/wish_item.dart';
 import 'package:provider/provider.dart';
 
@@ -10,12 +11,8 @@ class WishlistScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cart = Provider.of<Wishlist>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'My Cart',
-          style: TextStyle(fontSize: 30, color: Theme.of(context).accentColor),
-        ),
-      ),
+      backgroundColor: Colors.white,
+      appBar: MyAppBar(),
       body: cart.itemCount >= 1 ? Column(
         children: <Widget>[
           Expanded(
@@ -34,15 +31,15 @@ class WishlistScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.shopping_cart_outlined),
+            Image(image: AssetImage('assets/images/empty_wishlist.png')),
             Text('YOUR WISHLIST IS EMPTY',style: TextStyle(color: Colors.black, fontSize: 20),),
             Text('Add products you love.',style: TextStyle(color: Colors.black, fontSize: 18),),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyHomePage()));
                 },
                 child: Text(
-                  'Explore Products',
+                  'Explore',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 )),
           ],
