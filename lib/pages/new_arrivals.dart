@@ -1,22 +1,25 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/catalog.dart';
+import 'package:jaisalmeria_handloom/widgets/product_detail.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class NewArrivals extends StatefulWidget {
+  final Product product;
+
+  const NewArrivals({Key key, this.product}) : super(key: key);
   @override
   _NewArrivalsState createState() => _NewArrivalsState();
 }
 
 class _NewArrivalsState extends State<NewArrivals> {
-List<Product> productList = [
-  Product(id: "2", name: 'Bedsheet', imageUrl:'assets/product/IMG-20200908-WA0058.jpg', price: '299', images: []),
-  Product(id: "102", name: 'Curtain', imageUrl:'assets/catalog/curtain.jpg', price: '391', images: []),
-  Product(id: "202", name: 'Cushion', imageUrl:'assets/catalog/cushion.jpg', price: '391', images: []),
-  Product(id: "301", name: 'Towel', imageUrl:'assets/catalog/towels.jpg', price: '391',images: []),
-  Product(id: "401", name: 'Fridge Cover', imageUrl:'assets/catalog/fridgecover.jpg', price: '391',images: []),
-  Product(id: "501", name: 'Comforter', imageUrl:'assets/catalog/comforter.jpg', price: '391', images: []),
-];
+  List<Product> productList = [
+    Product(id: "2", name: 'Bedsheet', imageUrl:'assets/product/IMG-20200908-WA0058.jpg', price: '299', images: []),
+    Product(id: "102", name: 'Curtain', imageUrl:'assets/catalog/curtain.jpg', price: '391', images: []),
+    Product(id: "202", name: 'Cushion', imageUrl:'assets/catalog/cushion.jpg', price: '391', images: []),
+    Product(id: "301", name: 'Towel', imageUrl:'assets/catalog/towels.jpg', price: '391',images: []),
+    Product(id: "401", name: 'Fridge Cover', imageUrl:'assets/catalog/fridgecover.jpg', price: '391',images: []),
+    Product(id: "501", name: 'Comforter', imageUrl:'assets/catalog/comforter.jpg', price: '391', images: []),
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,7 +35,7 @@ List<Product> productList = [
           ), 
            Container(
             margin: EdgeInsets.symmetric(vertical: 8.0),
-            height: 260.0,
+            height: 250.0,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: productList.map((i) {
@@ -44,9 +47,11 @@ List<Product> productList = [
                         clipBehavior: Clip.antiAlias,
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, '/products',
-                                arguments: i);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductDetail(product: i)),
+                            );
                           },
                           child: Column(
                             crossAxisAlignment:CrossAxisAlignment.start,
@@ -62,7 +67,7 @@ List<Product> productList = [
                               
                               ListTile(
                                 title: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  padding: const EdgeInsets.symmetric(vertical: 5),
                                   child: Text(i.name,style: TextStyle(fontSize: 14)),
                                 ),
                                 subtitle: Column(

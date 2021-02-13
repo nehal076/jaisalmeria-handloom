@@ -34,7 +34,7 @@ class CatalogsPage extends StatelessWidget {
     ),
       20.heightBox,
       Container(
-         margin: EdgeInsets.symmetric(vertical: 8.0),
+         margin: EdgeInsets.symmetric(vertical: 4.0),
           height: 150.0,
         child: ListView(
           scrollDirection: Axis.horizontal,

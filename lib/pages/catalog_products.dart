@@ -57,7 +57,7 @@ class CatalogProducts extends StatelessWidget {
             Column(
               children: <Widget>[
               Hero(
-                tag: catalog.id,
+                tag: catalog.id != null ? catalog.id : UniqueKey(),
                 child: Material(
                   child: Container(
                     height: 250,
@@ -121,7 +121,6 @@ class CatalogProducts extends StatelessWidget {
           ],
         )
       ),
-
     );
   }
 }

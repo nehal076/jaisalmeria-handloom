@@ -25,7 +25,7 @@ class CatalogCard extends StatelessWidget {
         child: Hero(
           tag: catalog.id,
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image:

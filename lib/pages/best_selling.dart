@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/catalog.dart';
+import 'package:jaisalmeria_handloom/widgets/product_detail.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class BestSelling extends StatefulWidget {
@@ -43,9 +44,11 @@ List<Product> productList = [
                         clipBehavior: Clip.antiAlias,
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, '/products',
-                                arguments: i);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductDetail(product: i)),
+                            );
                           },
                           child: Column(
                             crossAxisAlignment:CrossAxisAlignment.start,
