@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:jaisalmeria_handloom/models/constants.dart';
+import 'package:jaisalmeria_handloom/models/responses/catalog_model.dart';
 import 'package:jaisalmeria_handloom/models/responses/login_modal.dart';
 import 'package:jaisalmeria_handloom/models/responses/logout_modal.dart';
 import 'package:jaisalmeria_handloom/pages/sign_up.dart';
@@ -96,6 +97,30 @@ class ApiManager {
       throw Exception('Failed to logout user.');
     }
 
+    return res;
+  }
+
+
+  static Future<Catalog> getAllCategories() async {
+    var client = http.Client();
+    var res;
+
+    try {
+      var response = await client.get(
+        BACKEND_URL + '/getAllCategories',
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        var jsonMap = json.decode(jsonString);
+        res = Catalog.fromJson(jsonMap);
+      }
+    } catch (Exception) {
+      print(Exception);
+      throw Exception('Failed load catalogs.');
+    }
     return res;
   }
 }

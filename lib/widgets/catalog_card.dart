@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:jaisalmeria_handloom/models/catalog.dart';
+import 'package:jaisalmeria_handloom/models/responses/catalog_model.dart';
 
 import '../pages/catalog_products.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CatalogCard extends StatelessWidget {
-  final Catalog catalog;
+  final List<Datum> catalog;
+  final int index;
 
   const CatalogCard({
     Key key,
-    this.catalog,
+    this.catalog, this.index,
   }) : super(key: key);
 
   @override
@@ -20,16 +21,16 @@ class CatalogCard extends StatelessWidget {
       aspectRatio: 1 / 1,
       child: InkWell(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CatalogProducts(catalog: catalog)));
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => CatalogProducts(catalog: catalog)));
         },
         child: Hero(
-          tag: catalog.id,
+          tag: catalog[index].id,
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image:
-                    DecorationImage(image: AssetImage(catalog.imageUrl), fit: BoxFit.cover)),
+                    DecorationImage(image: NetworkImage(catalog[index].imageUrl), fit: BoxFit.cover)),
             child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -41,7 +42,7 @@ class CatalogCard extends StatelessWidget {
               child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    catalog.name,
+                    catalog[index].name,
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
