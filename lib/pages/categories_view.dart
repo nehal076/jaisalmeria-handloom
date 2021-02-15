@@ -9,8 +9,13 @@ class CategoriesView extends StatelessWidget {
               '9.png',
               '5.png',
               '43.png',
-              '31.png'
-            ];
+              '31.png',
+              '7.png',
+              '35.png',
+              '43.png',
+              '44.png',
+              '28.png',
+              '20.png'            ];
   final List<String> categoryTitle = [
               'Bedsheets',
               'Curtains',
@@ -19,7 +24,13 @@ class CategoriesView extends StatelessWidget {
               'Covers',
               'Comfortors',
               'Mats',
-              'Table Cloth'
+              'Table Cloth',
+              'Sofa Covers',
+              'Oven Mitts',
+              'Shower Mats',
+              'Welcome Mats',
+              'Soft Pillows',
+              'Floor Mats'
             ];
 
   CategoriesView({Key key}) : super(key: key);

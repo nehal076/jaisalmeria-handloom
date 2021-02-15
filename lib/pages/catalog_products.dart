@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:jaisalmeria_handloom/models/responses/product_model.dart';
+import 'package:jaisalmeria_handloom/services/api_manager.dart';
 import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:jaisalmeria_handloom/widgets/filter.dart';
 import 'package:jaisalmeria_handloom/widgets/product_card.dart';
-
-import '../models/catalog.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:simple_animations/simple_animations.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class CatalogProducts extends StatelessWidget {
-  final Catalog catalog;
+class CatalogProducts extends StatefulWidget {
+  final catalog;
 
   CatalogProducts({this.catalog});
 
+  @override
+  _CatalogProductsState createState() => _CatalogProductsState();
+}
+
+class _CatalogProductsState extends State<CatalogProducts> {
+  Future<Product> _products;
+  @override
+  void initState() {
+    _products = ApiManager.getProducts(widget.catalog.id);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     PanelController filterController = new PanelController();
@@ -57,13 +68,13 @@ class CatalogProducts extends StatelessWidget {
             Column(
               children: <Widget>[
               Hero(
-                tag: catalog.id != null ? catalog.id : UniqueKey(),
+                tag: widget.catalog.imageUrl != null ? widget.catalog.imageUrl : UniqueKey(),
                 child: Material(
                   child: Container(
                     height: 250,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(catalog.imageUrl),
+                        image: NetworkImage(widget.catalog.imageUrl),
                         fit: BoxFit.cover
                       )
                     ),
@@ -78,7 +89,7 @@ class CatalogProducts extends StatelessWidget {
                           ]
                         )
                       ),
-                      child: Center(child: FadeAnimation(1, Text(catalog.name, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 40),)))
+                      child: Center(child: FadeAnimation(1, Text(widget.catalog.name, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 40),)))
                     ),
                   ),
                 ),
@@ -108,16 +119,41 @@ class CatalogProducts extends StatelessWidget {
                 ),
               ),
             ),
-            GridView.count(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              crossAxisCount: context.isMobile ? 2 : 4,
-              childAspectRatio: 0.7,
-              padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 12),
-              children: catalog.items.map((product) {
-                return ProductCard(product: product, key: UniqueKey());
-              }).toList(),
+
+            Container(
+              child: FutureBuilder<Product>(
+                future: _products,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: snapshot.data.data.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: context.isMobile ? 2 : 4, 
+                        childAspectRatio: 0.7,
+                      ),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 12),
+                      itemBuilder: (context, index) {
+                          return ProductCard(product: snapshot.data.data, index: index); 
+                        }
+                      );
+                  } else
+                    return Center(child: CircularProgressIndicator());
+                },
+              ),
             ),
+            // GridView.count(
+            //   shrinkWrap: true,
+            //   physics: NeverScrollableScrollPhysics(),
+            //   crossAxisCount: context.isMobile ? 2 : 4,
+            //   childAspectRatio: 0.7,
+            //   padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 12),
+            //   children:  
+            //   // widget.catalog.data.map((product) {
+            //   //   return ProductCard(product: product, key: UniqueKey());
+            //   // }).toList(),
+            // ),
           ],
         )
       ),

@@ -21,7 +21,7 @@ class CatalogCard extends StatelessWidget {
       aspectRatio: 1 / 1,
       child: InkWell(
         onTap: () {
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => CatalogProducts(catalog: catalog)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CatalogProducts(catalog: this.catalog[index])));
         },
         child: Hero(
           tag: catalog[index].id,

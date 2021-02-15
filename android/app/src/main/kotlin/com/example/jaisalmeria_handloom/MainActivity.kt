@@ -1,4 +1,4 @@
-package com.example.jaisalmeria_handloom
+package com.jaisalmeria_handloom.app
 
 import io.flutter.embedding.android.FlutterActivity
 

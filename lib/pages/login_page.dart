@@ -182,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
     Future<LoginModal>.delayed(Duration.zero, () => showDialog(
         context: context,
         // ignore: deprecated_member_use
-        child: AlertDialog(
+        builder: (_) => AlertDialog(
           shape: RoundedRectangleBorder(
               borderRadius:
                   BorderRadius.all(Radius.circular(16.0))),

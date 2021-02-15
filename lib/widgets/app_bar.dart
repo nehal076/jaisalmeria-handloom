@@ -48,7 +48,8 @@ class _MyAppBarState extends State<MyAppBar> {
     final cart = Provider.of<Cart>(context);
 
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white, // status bar color
+      brightness: Brightness.light,
       iconTheme: IconThemeData(color: Colors.black),
       leadingWidth: 40.0,
       // leading: InkWell(
