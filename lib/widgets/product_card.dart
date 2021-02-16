@@ -22,7 +22,7 @@ class ProductCard extends StatelessWidget {
              Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ProductDetail(product: product)),
+                  builder: (context) => ProductDetail(product: product[index])),
             );
           },
           child: Column(
@@ -55,7 +55,7 @@ class ProductCard extends StatelessWidget {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 2.0),
-                            child: Text("₹${product[index].price}", style: TextStyle(
+                            child: Text("₹${int.parse(product[index].price) - int.parse(product[index].discount) / 100}", style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w700,
                             )),
@@ -68,6 +68,16 @@ class ProductCard extends StatelessWidget {
                                 color: Colors.grey,
                                 decoration: TextDecoration.lineThrough
                             )),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 6.0),
+                            child: Text(
+                              "${product[index].discount}% Off",
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.blue[700],
+                              ),
+                            ),
                           ),
                         ],
                       ),

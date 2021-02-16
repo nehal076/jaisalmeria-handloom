@@ -56,7 +56,7 @@ class CartItems extends StatelessWidget {
               width: (MediaQuery.of(context).size.width) / 3,
               child: Column(
                 children: <Widget>[
-                  Image.asset(imageUrl),
+                  Image.network(imageUrl),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(

@@ -1,37 +1,25 @@
 // To parse this JSON data, do
 //
-//     final product = productFromJson(jsonString);
+//     final productDetails = productDetailsFromJson(jsonString);
 
 import 'dart:convert';
 
-Product productFromJson(String str) => Product.fromJson(json.decode(str));
+ProductDetails productDetailsFromJson(String str) => ProductDetails.fromJson(json.decode(str));
 
-String productToJson(Product data) => json.encode(data.toJson());
+String productDetailsToJson(ProductDetails data) => json.encode(data.toJson());
 
-class Product {
-    Product({
-        this.data,
-    });
-
-    List<Datum> data;
-
-    factory Product.fromJson(Map<String, dynamic> json) => Product(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    };
-}
-
-class Datum {
-    Datum({
+class ProductDetails {
+    ProductDetails({
         this.rating,
         this.id,
         this.categoryId,
         this.name,
         this.imageUrl,
         this.price,
+        this.size,
+        this.details,
+        this.material,
+        this.v,
         this.discount,
     });
 
@@ -41,15 +29,23 @@ class Datum {
     String name;
     String imageUrl;
     String price;
+    String size;
+    String details;
+    String material;
+    int v;
     String discount;
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(
         rating: json["rating"],
         id: json["_id"],
         categoryId: json["categoryId"],
         name: json["name"],
         imageUrl: json["imageUrl"],
         price: json["price"],
+        size: json["size"],
+        details: json["details"],
+        material: json["material"],
+        v: json["__v"],
         discount: json["discount"],
     );
 
@@ -60,6 +56,10 @@ class Datum {
         "name": name,
         "imageUrl": imageUrl,
         "price": price,
+        "size": size,
+        "details": details,
+        "material": material,
+        "__v": v,
         "discount": discount,
     };
 }
