@@ -3,8 +3,6 @@ import 'package:jaisalmeria_handloom/services/api_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/widgets/catalog_card.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class CatalogsPage extends StatefulWidget {
 

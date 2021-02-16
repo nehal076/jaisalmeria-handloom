@@ -5,7 +5,6 @@ import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:jaisalmeria_handloom/widgets/filter.dart';
 import 'package:jaisalmeria_handloom/widgets/product_card.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:simple_animations/simple_animations.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -32,7 +31,7 @@ class _CatalogProductsState extends State<CatalogProducts> {
       appBar: MyAppBar(),
       body: SlidingUpPanel(
         controller: filterController,
-        minHeight: 1,
+        minHeight: 0,
         color: Colors.white,
         panel: Filtre(),
         collapsed: Container(
@@ -154,6 +153,7 @@ class _CatalogProductsState extends State<CatalogProducts> {
             //   //   return ProductCard(product: product, key: UniqueKey());
             //   // }).toList(),
             // ),
+            SizedBox(height: kToolbarHeight + 20),
           ],
         )
       ),

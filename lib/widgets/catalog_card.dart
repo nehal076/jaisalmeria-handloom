@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/responses/catalog_model.dart';
-
 import '../pages/catalog_products.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class CatalogCard extends StatelessWidget {
   final List<Datum> catalog;
