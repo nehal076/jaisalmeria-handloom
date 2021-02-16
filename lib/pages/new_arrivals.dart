@@ -187,7 +187,7 @@ class _NewArrivalsState extends State<NewArrivals> {
           //       );
           //     }).toList(),
           //   ),
-          // ), 
+          // ),
         ],
       ).p16();
   }
