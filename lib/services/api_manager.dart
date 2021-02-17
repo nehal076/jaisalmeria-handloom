@@ -205,5 +205,28 @@ class ApiManager {
     return res;
   }
 
+  static Future<Product> getBestSelling() async {
+    var client = http.Client();
+    var res;
+    
+    try {
+      var response = await client.get(
+        BACKEND_URL + '/getBestSelling',
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        var jsonMap = json.decode(jsonString);
+        res = Product.fromJson(jsonMap);
+      }
+    } catch (Exception) {
+      print(Exception);
+      throw Exception('Failed load products.');
+    }
+    return res;
+  }
+
   
 }

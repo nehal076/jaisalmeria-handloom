@@ -13,8 +13,6 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget  {
 }
 
 class _MyAppBarState extends State<MyAppBar> {
-
-
   @override
   void initState() {
     super.initState();
@@ -48,7 +46,7 @@ class _MyAppBarState extends State<MyAppBar> {
     final cart = Provider.of<Cart>(context);
 
     return AppBar(
-      backgroundColor: Colors.white, // status bar color
+      backgroundColor: Colors.white24, // status bar color
       brightness: Brightness.light,
       iconTheme: IconThemeData(color: Colors.black),
       leadingWidth: 40.0,
@@ -68,17 +66,12 @@ class _MyAppBarState extends State<MyAppBar> {
         IconButton(icon: actionIcon, onPressed: () {
             setState(() {
               if (this.actionIcon.icon == CupertinoIcons.search) {
-                this.actionIcon = new Icon(Icons.close, color: Colors.black,);
+                this.actionIcon = new Icon(Icons.close);
                 this.appBarTitle = new TextField(
                   controller: _searchQuery,
-                  style: new TextStyle(
-                    color: Colors.black,
-
-                  ),
                   decoration: new InputDecoration(
-                      prefixIcon: new Icon(CupertinoIcons.search, color: Colors.black),
+                      prefixIcon: new Icon(CupertinoIcons.search),
                       hintText: "Search...",
-                      hintStyle: new TextStyle(color: Colors.black)
                   ),
                 );
                 _handleSearchStart();

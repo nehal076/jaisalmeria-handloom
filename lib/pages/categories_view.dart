@@ -92,7 +92,6 @@ class CategoriesView extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 14,
                             fontFamily: 'Regular',
-                            color: Colors.black,
                           ),
                         ),
                       )

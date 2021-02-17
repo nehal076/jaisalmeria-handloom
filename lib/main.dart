@@ -15,12 +15,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'pages/home_page.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.white,
-    statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: Colors.black,
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //   statusBarColor: Colors.white,
+  //   statusBarIconBrightness: Brightness.dark,
+  //   systemNavigationBarIconBrightness: Brightness.dark,
+  //   systemNavigationBarColor: Colors.black,
+  // ));
   runApp(MyApp());
 }
 
@@ -41,6 +41,8 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        // darkTheme: ThemeData.dark(),
+        // themeMode: ThemeMode.system,
         title: 'Jaisalmeria Handloom',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -79,7 +81,6 @@ class MyApp extends StatelessWidget {
             indicatorPadding: EdgeInsets.all(5.0),
             indicatorColor: Colors.green[100],
           ),
-          backgroundColor: Colors.white,
         ),
       ),
         routes: {
