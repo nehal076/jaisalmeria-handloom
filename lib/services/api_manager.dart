@@ -16,7 +16,7 @@ class ApiManager {
 
     try {
       var response = await client.post(
-        BACKEND_URL + '/userRegister',
+        BACKEND_URL + '/registerUser',
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -44,19 +44,19 @@ class ApiManager {
   static Future<LoginModal> loginUser(String emailId, String password) async {
     var client = http.Client();
     LoginModal res;
+      Map<String, String> queryParams = {
+        'emailId': emailId,
+        'password': password,
+      };
+      String queryString = Uri(queryParameters: queryParams).query;
 
     try {
-      var response = await client.post(
-        BACKEND_URL + '/userLogin',
+      var response = await client.get(
+        BACKEND_URL + '/loginUser' + '?' + queryString,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, String>{
-          'emailId': emailId,
-          'password': password,
-        })
       );
-      print(response);
       if (response.statusCode == 200) {
         var jsonString = response.body;
         var jsonMap = json.decode(jsonString);
@@ -70,7 +70,6 @@ class ApiManager {
 
     return res;
   }
-
 
   static Future<LogoutModal> logoutUser(String token, int userId) async {
     var client = http.Client();
@@ -102,7 +101,6 @@ class ApiManager {
     return res;
   }
 
-
   static Future<Catalog> getAllCategories() async {
     var client = http.Client();
     var res;
@@ -111,7 +109,7 @@ class ApiManager {
       var response = await client.get(
         BACKEND_URL + '/getAllCategories',
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
+          'Content-Type': 'application/json; charset=UTF-8'
         },
       );
       if (response.statusCode == 200) {

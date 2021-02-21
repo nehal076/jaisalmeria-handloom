@@ -43,7 +43,7 @@ class _CatalogsPageState extends State<CatalogsPage> {
               child: Text('View All',
                   style: TextStyle(color: Colors.white)),
               onPressed: () {
-                Navigator.pushNamed(context, '/categorise');
+                Navigator.pushNamed(context, '/catagories');
               }),
         )
       ],

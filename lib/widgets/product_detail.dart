@@ -64,12 +64,13 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                           _visible = true;
                         });
                       },
-                      child: Carousel(
-                          autoplay: false,
-                          boxFit: BoxFit.cover,
-                          dotBgColor: Colors.transparent,
-                          dotColor: Colors.black.withOpacity(0.5),
-                          images: [NetworkImage(widget.product.imageUrl)]),
+                      child: Image.network(widget.product.imageUrl)
+                    //   Carousel(
+                    //       autoplay: false,
+                    //       boxFit: BoxFit.cover,
+                    //       dotBgColor: Colors.transparent,
+                    //       dotColor: Colors.black.withOpacity(0.5),
+                    //       images: [NetworkImage(widget.product.imageUrl)]),
                     ),
                   ),
                 ),

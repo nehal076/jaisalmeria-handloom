@@ -47,7 +47,6 @@ class CartItems extends StatelessWidget {
     // );
     Container(
       padding: EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
-      height: 220,
       child: Card(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

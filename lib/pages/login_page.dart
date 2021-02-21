@@ -2,13 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/main.dart';
 import 'package:jaisalmeria_handloom/models/responses/login_modal.dart';
-import 'package:jaisalmeria_handloom/pages/home_page.dart';
-import 'package:jaisalmeria_handloom/pages/sign_up.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jaisalmeria_handloom/services/api_manager.dart';
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
+}
+
+_saveUserId(userId) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('userId', userId);
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -136,9 +140,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   successDialog(snapshot) {
-    Future<LoginModal>.delayed(Duration.zero, () => 
-      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MyApp(user: snapshot.data)))
+    // _saveUserId
+    Future<LoginModal>.delayed(Duration.zero, () {
+      _saveUserId(snapshot.data.userId);
+      return Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MyApp(user: snapshot.data)));
+    }
+      
       // Navigator.of(context).pushNamed('/home',  arguments: {"user": snapshot.data})
     );
                   

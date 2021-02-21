@@ -37,72 +37,75 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 12),
-          height: 100,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   PageTransition(
-                  //     type: PageTransitionType.fade,
-                  //     child: ProductList(),
-                  //   ),
-                  // );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-                        width: 65,
-                        height: 65,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: index%2 == 0 ? index%3 != 0 ? index%4 == 0 ? Colors.green[100] : Colors.yellow[100] : Colors.pink[50] : Colors.blue[50],
-                          border: Border.all(
-                            color: Colors.white,
-                          ),
-                        ),
-                        child: Container(
-                          width: 55,
-                          height: 55,
+    return Card(
+      elevation: 0,
+      child: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 12),
+            height: 90,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: categories.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    // Navigator.push(
+                    //   context,
+                    //   PageTransition(
+                    //     type: PageTransitionType.fade,
+                    //     child: ProductList(),
+                    //   ),
+                    // );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Container(
+                          width: 50,
+                          height: 50,
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/categories/" + categories[index],
+                            shape: BoxShape.circle,
+                            color: index%2 == 0 ? index%3 != 0 ? index%4 == 0 ? Colors.green[100] : Colors.yellow[100] : Colors.pink[50] : Colors.blue[50],
+                            border: Border.all(
+                              color: Colors.white,
+                            ),
+                          ),
+                          child: Container(
+                            width: 55,
+                            height: 55,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  "assets/categories/" + categories[index],
+                                ),
+                                fit: BoxFit.fill,
                               ),
-                              fit: BoxFit.fill,
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          categoryTitle[index],
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Regular',
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            categoryTitle[index],
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'Regular',
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

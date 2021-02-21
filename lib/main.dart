@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:jaisalmeria_handloom/models/cart.dart';
 import 'package:jaisalmeria_handloom/models/responses/login_modal.dart';
 import 'package:jaisalmeria_handloom/models/wishlist.dart';
+import 'package:jaisalmeria_handloom/pages/all_categories.dart';
 import 'package:jaisalmeria_handloom/pages/cart_screen.dart';
 import 'package:jaisalmeria_handloom/pages/login_page.dart';
 import 'package:jaisalmeria_handloom/pages/sign_up.dart';
@@ -89,6 +90,7 @@ class MyApp extends StatelessWidget {
           '/auth': (ctx) => LoginPage(),
           '/signup': (ctx) => SignupPage(),
           '/wishlist': (ctx) => WishlistScreen(),
+          '/catagories': (ctx) => AllCategories(),
         },
       ),
     );
