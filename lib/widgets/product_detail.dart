@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/cart.dart';
-import 'package:jaisalmeria_handloom/models/responses/product_details_model.dart';
+import 'package:jaisalmeria_handloom/models/catalog.dart';
 import 'package:jaisalmeria_handloom/models/wishlist.dart';
-import 'package:jaisalmeria_handloom/services/api_manager.dart';
 import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:jaisalmeria_handloom/pages/payment_screen.dart';
@@ -11,27 +10,29 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ProductDetail extends StatefulWidget {
-  final product;
+  final Product product;
 
   ProductDetail({this.product});
 
   @override
-  State<StatefulWidget> createState() => _ProductDetailState();
+  State<StatefulWidget> createState() => _ProductDetailState(product);
 }
 
 class _ProductDetailState extends State<ProductDetail> with SingleTickerProviderStateMixin  {
-  Future<ProductDetails> _product;
+
   TabController _tabController;
   @override
   void initState() {
-    _tabController = TabController(vsync: this, length: 2);
-    _product = ApiManager.getProductDetails(widget.product.id);
-    print(_product);
     super.initState();
+    _tabController = TabController(vsync: this, length: 2);
   }
 
+
+  final Product product;
   bool _visible = true;
   TransformationController controller = TransformationController();
+
+  _ProductDetailState(this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                   height: 300,
                   width: MediaQuery.of(context).size.width - 20,
                   child: Hero(
-                    tag: widget.product.id,
+                    tag: product.id,
                     child: InteractiveViewer(
                       transformationController: controller,
                       onInteractionStart: (scale) {
@@ -64,13 +65,16 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                           _visible = true;
                         });
                       },
-                      child: Image.network(widget.product.imageUrl)
-                    //   Carousel(
-                    //       autoplay: false,
-                    //       boxFit: BoxFit.cover,
-                    //       dotBgColor: Colors.transparent,
-                    //       dotColor: Colors.black.withOpacity(0.5),
-                    //       images: [NetworkImage(widget.product.imageUrl)]),
+                      child: Carousel(
+                          autoplay: false,
+                          boxFit: BoxFit.cover,
+                          dotBgColor: Colors.transparent,
+                          dotColor: Colors.black.withOpacity(0.5),
+                          images: (product.images.isNotEmpty)
+                              ? product.images.map((product) {
+                                  return AssetImage(product.imageUrl);
+                                }).toList()
+                              : [AssetImage(product.imageUrl)]),
                     ),
                   ),
                 ),
@@ -83,9 +87,9 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                       child:  Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _buildNameWidget(widget.product),
+                          _buildNameWidget(product),
                           SizedBox(height: 12.0),
-                          _buildPriceWidget(widget.product),
+                          _buildPriceWidget(product),
                           SizedBox(height: 12.0),
                           _buildDivider(screenSize),
                           SizedBox(height: 12.0),
@@ -101,7 +105,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                           SizedBox(height: 6.0),
                           _buildDivider(screenSize),
                           SizedBox(height: 4.0),
-                          _buildMoreInfoData(widget.product),
+                          _buildMoreInfoData(product),
                           SizedBox(height: 24.0),
                           _buildComments(context),
                           _buildSimilarProducts(context),
@@ -144,7 +148,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
           ),
         ),
       ),
-      bottomNavigationBar: _buildBottomNavigationBar(context, cart, widget.product, wishlist),
+      bottomNavigationBar: _buildBottomNavigationBar(context, cart, product, wishlist),
     );
   }
   _buildBottomNavigationBar(context, cart, product, wishlist) {
@@ -239,7 +243,7 @@ _buildPriceWidget(product) {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Text(
-          "₹${int.parse(product.price) - (int.parse(product.discount) / 100)}",
+          "₹${product.price}",
           style: TextStyle(fontSize: 18.0, color: Colors.black),
         ),
         SizedBox(width: 8.0),
@@ -255,7 +259,7 @@ _buildPriceWidget(product) {
           width: 8.0,
         ),
         Text(
-          "${product.discount}% Off",
+          "${product.price}% Off",
           style: TextStyle(
             fontSize: 12.0,
             color: Colors.blue[700],
@@ -404,7 +408,7 @@ _buildMoreInfoHeader() {
   );
 }
 
-_buildMoreInfoData(product) {
+_buildMoreInfoData(Product product) {
   return Padding(
     padding: const EdgeInsets.only(
       left: 12.0,
@@ -612,13 +616,13 @@ _buildComments(BuildContext context) {
   }
 
   buildTrending() {
-    List<ProductDetails> productList = [
-      ProductDetails(id: "2", name: 'Bedsheet', imageUrl:'assets/product/IMG-20200908-WA0058.jpg', price: '299'),
-      ProductDetails(id: "102", name: 'Curtain', imageUrl:'assets/catalog/curtain.jpg', price: '391'),
-      ProductDetails(id: "202", name: 'Cushion', imageUrl:'assets/catalog/cushion.jpg', price: '391'),
-      ProductDetails(id: "301", name: 'Towel', imageUrl:'assets/catalog/towels.jpg', price: '391'),
-      ProductDetails(id: "401", name: 'Fridge Cover', imageUrl:'assets/catalog/fridgecover.jpg', price: '391'),
-      ProductDetails(id: "501", name: 'Comforter', imageUrl:'assets/catalog/comforter.jpg', price: '391'),
+    List<Product> productList = [
+      Product(id: "2", name: 'Bedsheet', imageUrl:'assets/product/IMG-20200908-WA0058.jpg', price: '299', images: []),
+      Product(id: "102", name: 'Curtain', imageUrl:'assets/catalog/curtain.jpg', price: '391', images: []),
+      Product(id: "202", name: 'Cushion', imageUrl:'assets/catalog/cushion.jpg', price: '391', images: []),
+      Product(id: "301", name: 'Towel', imageUrl:'assets/catalog/towels.jpg', price: '391',images: []),
+      Product(id: "401", name: 'Fridge Cover', imageUrl:'assets/catalog/fridgecover.jpg', price: '391',images: []),
+      Product(id: "501", name: 'Comforter', imageUrl:'assets/catalog/comforter.jpg', price: '391', images: []),
     ];
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),

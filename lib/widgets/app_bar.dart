@@ -13,6 +13,8 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget  {
 }
 
 class _MyAppBarState extends State<MyAppBar> {
+
+
   @override
   void initState() {
     super.initState();
@@ -20,19 +22,20 @@ class _MyAppBarState extends State<MyAppBar> {
     init();
   }
 
-  Widget appBarTitle = Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      ClipOval(
-        child: Image.asset(
-          "assets/images/jh_no_bg.png",
-          height: kToolbarHeight - 10,
-          width: kToolbarHeight - 10,
-        ),
-      ),
-      // Text('Jaisalmeria Handloom', style: TextStyle(color: Colors.black, fontSize: 12),)
-    ],
-  );
+  Widget appBarTitle = 
+  Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ClipOval(
+            child: Image.asset(
+              "assets/images/jh.jpg",
+              height: kToolbarHeight - 10,
+              width: kToolbarHeight - 10,
+            ),
+          ),
+          // Text('Jaisalmeria Handloom', style: TextStyle(color: Colors.black, fontSize: 12),)
+        ],
+      );
   Icon actionIcon = Icon(CupertinoIcons.search, color: Colors.black,);
   final key = new GlobalKey<ScaffoldState>();
   final TextEditingController _searchQuery = new TextEditingController();
@@ -44,70 +47,56 @@ class _MyAppBarState extends State<MyAppBar> {
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
 
-    return Container(
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-          colors: [
-            Colors.green[200],
-            Colors.green[100],
-            Colors.green[50],
-          ]
-        ),
-        boxShadow: [
-          new BoxShadow(
-            color: Colors.grey[500],
-            blurRadius: 5.0,
-            spreadRadius: 1.0,
-          )
-        ]
-      ),
-      child: AppBar(
-        backgroundColor: Colors.white24, // status bar color
-        brightness: Brightness.light,
-        iconTheme: IconThemeData(color: Colors.black),
-        leadingWidth: 40.0,
-        // leading: InkWell(
-        //   onTap: () {
-        //     Scaffold.of(context).openDrawer();
-        //   },
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(left: 16.0),
-        //     child: Image.asset("assets/icon-sidebar.png"),
-        //   ),
-        // ),
-        elevation: 0.0,
-        title: appBarTitle,
-        actions: [
-          // IconButton(icon: Icon(CupertinoIcon(CupertinoIcons.search)), onPressed: () {}),
-          IconButton(icon: actionIcon, onPressed: () {
-              setState(() {
-                if (this.actionIcon.icon == CupertinoIcons.search) {
-                  this.actionIcon = new Icon(Icons.close);
-                  this.appBarTitle = new TextField(
-                    controller: _searchQuery,
-                    decoration: new InputDecoration(
-                        prefixIcon: new Icon(CupertinoIcons.search),
-                        hintText: "Search...",
-                    ),
-                  );
-                  _handleSearchStart();
-                }
-                else {
-                  _handleSearchEnd();
-                }
-              });
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      iconTheme: IconThemeData(color: Colors.black),
+      leadingWidth: 40.0,
+      // leading: InkWell(
+      //   onTap: () {
+      //     Scaffold.of(context).openDrawer();
+      //   },
+      //   child: Padding(
+      //     padding: const EdgeInsets.only(left: 16.0),
+      //     child: Image.asset("assets/icon-sidebar.png"),
+      //   ),
+      // ),
+      elevation: 0.0,
+      title: appBarTitle,
+      actions: [
+        // IconButton(icon: Icon(CupertinoIcon(CupertinoIcons.search)), onPressed: () {}),
+        IconButton(icon: actionIcon, onPressed: () {
+            setState(() {
+              if (this.actionIcon.icon == CupertinoIcons.search) {
+                this.actionIcon = new Icon(Icons.close, color: Colors.black,);
+                this.appBarTitle = new TextField(
+                  controller: _searchQuery,
+                  style: new TextStyle(
+                    color: Colors.black,
+
+                  ),
+                  decoration: new InputDecoration(
+                      prefixIcon: new Icon(CupertinoIcons.search, color: Colors.black),
+                      hintText: "Search...",
+                      hintStyle: new TextStyle(color: Colors.black)
+                  ),
+                );
+                _handleSearchStart();
+              }
+              else {
+                _handleSearchEnd();
+              }
+            });
+          }),
+        IconButton(
+            icon: (cart.itemCount != 0)
+                ? Badge(
+                    badgeContent: Text(cart.itemCount.toString()),
+                    child: Icon(CupertinoIcons.shopping_cart))
+                : Icon(CupertinoIcons.shopping_cart),
+            onPressed: () {
+            Navigator.of(context).pushNamed('/cart');
             }),
-          IconButton(
-              icon: (cart.itemCount != 0)
-                  ? Badge(
-                      badgeContent: Text(cart.itemCount.toString()),
-                      child: Icon(CupertinoIcons.shopping_cart))
-                  : Icon(CupertinoIcons.shopping_cart),
-              onPressed: () {
-              Navigator.of(context).pushNamed('/cart');
-              }),
-        ],
-      ),
+      ],
     );
   }
 
@@ -126,7 +115,7 @@ class _MyAppBarState extends State<MyAppBar> {
         children: [
           ClipOval(
             child: Image.asset(
-              "assets/images/jh_no_bg.png",
+              "assets/images/jh.jpg",
               height: kToolbarHeight - 10,
               width: kToolbarHeight - 10,
             ),
@@ -140,21 +129,18 @@ class _MyAppBarState extends State<MyAppBar> {
   }
 
   void init() {
-    List<String> _list = [
-      "Google","IOS","Andorid","Dart","Flutter","Python","React","Xamarin","Kotlin","Java","RxAndroid"
-    ];
-    // _list = List();
-    // _list.add("Google");
-    // _list.add("IOS");
-    // _list.add("Andorid");
-    // _list.add("Dart");
-    // _list.add("Flutter");
-    // _list.add("Python");
-    // _list.add("React");
-    // _list.add("Xamarin");
-    // _list.add("Kotlin");
-    // _list.add("Java");
-    // _list.add("RxAndroid");
+    _list = List();
+    _list.add("Google");
+    _list.add("IOS");
+    _list.add("Andorid");
+    _list.add("Dart");
+    _list.add("Flutter");
+    _list.add("Python");
+    _list.add("React");
+    _list.add("Xamarin");
+    _list.add("Kotlin");
+    _list.add("Java");
+    _list.add("RxAndroid");
   }
 
 }

@@ -29,7 +29,7 @@ class _MenuPage extends State<MenuPage> {
             backgroundImage: AssetImage(
                 'assets/images/no_user.png'),
           ),
-          accountEmail: Text(widget.user != null? widget.user.data.email: '', style: TextStyle(color: Colors.black),),
+          accountEmail: Text(widget.user != null? widget.user.data.emailId: '', style: TextStyle(color: Colors.black),),
           accountName: Text(widget.user != null? widget.user.data.firstName +' '+widget.user.data.lastName : 'Welcome, guest', style: TextStyle(color: Colors.black)),
         ),
         Expanded(
@@ -121,7 +121,7 @@ class _MenuPage extends State<MenuPage> {
                 title: Text('Logout'),
                 onTap: () {
                   setState(() {
-                    // ApiManager.logoutUser(widget.user.message, widget.user.statusCode);
+                    ApiManager.logoutUser(widget.user.data.token, widget.user.data.userId);
                     // MyApp(user: null);
                   });
                 },

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jaisalmeria_handloom/pages/new_address.dart';
 import 'package:jaisalmeria_handloom/pages/payment_screen.dart';
 
 class AddressPage extends StatefulWidget {
@@ -16,10 +14,7 @@ class _AddressPageState extends State<AddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
-        ),
+        appBar: AppBar(),
         body: 
         Center(
         child: Container(
@@ -50,46 +45,8 @@ class _AddressPageState extends State<AddressPage> {
                           Icons.check_circle,
                           color: Color(0xFF10CA88),
                         ),
-                        title: Text('HOME ADDRESS'),
-                        subtitle: Text("370/A-1, 3rd C Rd, Sardarpura, Jodhpur"),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 12.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        border: Border.all(
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                      child: ListTile(
-                        trailing: Icon(
-                          CupertinoIcons.circle,
-                          color: Colors.blueGrey,
-                        ),
-                        title: Text('OFFICE ADDRESS'),
-                        subtitle: Text("GoHive, Gurugram"),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => NewAddress()));
-                      },
-                      child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 12.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          border: Border.all(
-                            color: Colors.blueGrey,
-                          ),
-                        ),
-                        child: ListTile(
-                          trailing: Icon(
-                            Icons.arrow_forward_ios,
-                          ),
-                          title: Text('Add a New Address'),
-                        ),
+                        title: Text('HOME ADRESS'),
+                        subtitle: Text("125 Lorem Ipsum"),
                       ),
                     ),
                     Text("Payment method"),

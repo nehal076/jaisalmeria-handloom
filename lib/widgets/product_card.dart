@@ -1,15 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jaisalmeria_handloom/models/catalog.dart';
 import 'package:jaisalmeria_handloom/widgets/product_detail.dart';
 import 'package:jaisalmeria_handloom/models/cart.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ProductCard extends StatelessWidget {
-  final product;
-  final int index;
+  final Product product;
 
-  const ProductCard({Key key, this.product, this.index}) : super(key: key);
+  const ProductCard({Key key, this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,27 +23,27 @@ class ProductCard extends StatelessWidget {
              Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ProductDetail(product: product[index])),
+                  builder: (context) => ProductDetail(product: product)),
             );
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Hero(
-                tag: product[index].id,
+                tag: product.id,
                 child: SizedBox(
                   child: Image(
                     height: 150,
                     width: double.infinity,
                     fit: BoxFit.fitHeight,
-                    image: NetworkImage( product[index].imageUrl),
+                    image: AssetImage( product.imageUrl),
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: ListTile(
-                  title: Text(product[index].name,
+                  title: Text(product.name,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16
@@ -55,29 +56,19 @@ class ProductCard extends StatelessWidget {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 2.0),
-                            child: Text("₹${int.parse(product[index].price) - int.parse(product[index].discount) / 100}", style: TextStyle(
+                            child: Text("₹${product.price}", style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w700,
                             )),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 6.0),
-                            child: Text("₹${product[index].price}", style: TextStyle(
+                            child: Text("₹${product.price}", style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.italic,
                                 color: Colors.grey,
                                 decoration: TextDecoration.lineThrough
                             )),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 6.0),
-                            child: Text(
-                              "${product[index].discount}% Off",
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.blue[700],
-                              ),
-                            ),
                           ),
                         ],
                       ),
@@ -91,7 +82,6 @@ class ProductCard extends StatelessWidget {
                   selectionColor: Colors.orange,
                   isSelectable: false,
                   onRatingUpdate: (value) {},
-                  value: product[index].rating.toDouble() + 5
                 ),
                 5.widthBox,
                 "(100)".text.xs.gray600.make(),
@@ -112,16 +102,16 @@ class ProductCard extends StatelessWidget {
       //       builder: (context) => ProductDetail(product: product)),
       // ),
     //   child: Hero(
-    //     tag: product[index].id,
+    //     tag: product.id,
     //     child: VxAnimatedBox(
     //             child: Align(
     //       alignment: Alignment.bottomLeft,
     //       child: Row(
     //         crossAxisAlignment: CrossAxisAlignment.center,
     //         children: [
-    //           product[index].name.text.white.semiBold.make(),
+    //           product.name.text.white.semiBold.make(),
     //           5.widthBox,
-    //           "₹${product[index].price}".text.white.bold.make(),
+    //           "₹${product.price}".text.white.bold.make(),
     //           Spacer(),
     //           InkWell(
     //             key: key,
@@ -130,8 +120,8 @@ class ProductCard extends StatelessWidget {
     //                 duration: Duration(seconds: 3),
     //                 content: Text('Item Added to Cart'),
     //               ));
-    //               cart.addItem(product[index].id, product[index].name,
-    //                   double.tryParse(product[index].price), product[index].imageUrl);
+    //               cart.addItem(product.id, product.name,
+    //                   double.tryParse(product.price), product.imageUrl);
     //             },
     //             child:
     //                 Icon(CupertinoIcons.cart_badge_plus, color: Colors.white),
@@ -150,7 +140,7 @@ class ProductCard extends StatelessWidget {
     //         .bgImage(DecorationImage(
     //             fit: BoxFit.cover,
     //             image: AssetImage(
-    //               product[index].imageUrl,
+    //               product.imageUrl,
     //             )))
     //         .rounded
     //         .shadowMd
@@ -168,18 +158,18 @@ class ProductCard extends StatelessWidget {
       //     clipBehavior: Clip.antiAliasWithSaveLayer,
       //     child: GridTile(
       //       child: Hero(
-      //         tag: product[index].id,
+      //         tag: product.id,
       //         child: Container(
       //           decoration: BoxDecoration(
       //             image: DecorationImage(
-      //               image: new AssetImage(product[index].imageUrl),
+      //               image: new AssetImage(product.imageUrl),
       //               fit: BoxFit.cover,
       //             ),
       //           ),
       //         ),
       //       ),
       //       footer: GridTileBar(
-      //         title: Text(product[index].name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
+      //         title: Text(product.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
       //           trailing: IconButton(
       //           icon: Icon(Icons.shopping_cart, color: Colors.black,),
       //           onPressed: () {
@@ -187,7 +177,7 @@ class ProductCard extends StatelessWidget {
       //               duration: Duration(seconds: 3),
       //               content: Text('Item Added to Cart'),
       //             ));
-      //             cart.addItem(product[index].id, product[index].name, double.tryParse(product[index].price), product[index].imageUrl);
+      //             cart.addItem(product.id, product.name, double.tryParse(product.price), product.imageUrl);
       //           }),
       //           backgroundColor: Colors.grey
       //       ),

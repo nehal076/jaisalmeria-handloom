@@ -28,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Vx.white,
       drawer: Drawer(
         child: MenuPage(user: widget.user),
       ),
@@ -38,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             heroTag: UniqueKey(),
             tooltip: "Call",
-            onPressed: () {},// launch("tel://+919414130356"),
+            onPressed: () => launch("tel://+919414130356"),
             backgroundColor: Colors.black,
             child: Icon(CupertinoIcons.phone),
           ),

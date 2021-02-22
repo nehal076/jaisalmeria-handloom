@@ -10,60 +10,64 @@ String loginModalToJson(LoginModal data) => json.encode(data.toJson());
 
 class LoginModal {
     LoginModal({
-        this.statusCode,
         this.message,
+        this.statusCode,
         this.data,
     });
 
-    int statusCode;
     String message;
+    int statusCode;
     Data data;
 
     factory LoginModal.fromJson(Map<String, dynamic> json) => LoginModal(
-        statusCode: json["statusCode"],
         message: json["message"],
+        statusCode: json["statusCode"],
         data: Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "statusCode": statusCode,
         "message": message,
+        "statusCode": statusCode,
         "data": data.toJson(),
     };
 }
 
 class Data {
     Data({
-        this.id,
+        this.token,
         this.firstName,
         this.lastName,
-        this.email,
-        this.password,
-        this.v,
+        this.emailId,
+        this.createdAt,
+        this.userId,
+        this.status,
     });
 
-    String id;
+    String token;
     String firstName;
     String lastName;
-    String email;
-    String password;
-    int v;
+    String emailId;
+    dynamic createdAt;
+    int userId;
+    String status;
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
-        id: json["_id"],
+        token: json["token"],
         firstName: json["firstName"],
         lastName: json["lastName"],
-        email: json["email"],
-        password: json["password"],
-        v: json["__v"],
+        emailId: json["emailId"],
+        createdAt: json["createdAt"],
+        userId: json["userId"],
+        status: json["status"],
     );
 
     Map<String, dynamic> toJson() => {
-        "_id": id,
+        "token": token,
         "firstName": firstName,
         "lastName": lastName,
-        "email": email,
-        "password": password,
-        "__v": v,
+        "emailId": emailId,
+        "createdAt": createdAt,
+        "userId": userId,
+        "status": status,
     };
 }
