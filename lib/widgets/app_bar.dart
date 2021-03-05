@@ -2,9 +2,14 @@ import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/cart.dart';
+import 'package:jaisalmeria_handloom/pages/home_page.dart';
 import 'package:provider/provider.dart';
-
+typedef void StringCallback(String val);
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget  {
+  final StringCallback callback;
+
+  const MyAppBar({Key key, this.callback}) : super(key: key);
+
   @override
   _MyAppBarState createState() => _MyAppBarState();
 
@@ -18,6 +23,13 @@ class _MyAppBarState extends State<MyAppBar> {
     super.initState();
     _IsSearching = false;
     init();
+    _searchQuery.addListener(_printLatestValue);
+  }
+  _printLatestValue() {
+    setState(() {
+      print("text field: ${_searchQuery.text}");
+      MyHomePage.of(context).string = _searchQuery.text;
+    });
   }
 
   Widget appBarTitle = Row(
@@ -91,6 +103,7 @@ class _MyAppBarState extends State<MyAppBar> {
                     ),
                   );
                   _handleSearchStart();
+                  MyHomePage.of(context).string = _searchQuery.text;
                 }
                 else {
                   _handleSearchEnd();

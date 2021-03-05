@@ -10,6 +10,7 @@ import 'package:jaisalmeria_handloom/pages/login_page.dart';
 import 'package:jaisalmeria_handloom/pages/sign_up.dart';
 import 'package:jaisalmeria_handloom/pages/user_settings.dart';
 import 'package:jaisalmeria_handloom/pages/wishlist_screen.dart';
+import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,11 +26,16 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final LoginModal user;
 
   const MyApp({Key key, this.user}) : super(key: key);
-  // This widget is the root of your application.
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -55,7 +61,7 @@ class MyApp extends StatelessWidget {
         child: Scaffold(
           body: TabBarView(
             children: [
-              MyHomePage(title: "Jaisalmeria Handloom", user: user),
+              MyHomePage(title: "Jaisalmeria Handloom", user: widget.user),
               WishlistScreen(),
               CartScreen(),
               UserSettings()

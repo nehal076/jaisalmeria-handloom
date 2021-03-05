@@ -80,12 +80,10 @@ class _NewArrivalsState extends State<NewArrivals> {
                                     SizedBox(
                                       height: 160,
                                       child: Image(
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(snapshot.data.data[index].imageUrl),
-                                          ),
-                                        ),
-                                      
-                                    
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(snapshot.data.data[index].imageUrl),
+                                      ),
+                                    ),
                                     ListTile(
                                       title: Padding(
                                         padding: const EdgeInsets.symmetric(vertical: 5),
@@ -105,6 +103,11 @@ class _NewArrivalsState extends State<NewArrivals> {
                                             ),
                                             5.widthBox,
                                             "(100)".text.xs.gray600.make(),
+                                            // 5.widthBox,
+                                            // Icon(
+                                            //   Icons.favorite_border_outlined,
+                                            //   color: Colors.green,
+                                            // )
                                           ].row()
                                         ],
                                       ),

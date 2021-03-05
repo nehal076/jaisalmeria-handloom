@@ -20,18 +20,29 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
+
+  
+  static _MyHomePageState of(BuildContext context) =>
+    context.findAncestorStateOfType<_MyHomePageState>();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   final _scrollController = ScrollController();
-
+  String string = "Not set yet"; 
+  WidgetBuilder leadDialog = (BuildContext context) => Dialog();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
         child: MenuPage(user: widget.user),
       ),
-      appBar: MyAppBar(),
+      appBar: MyAppBar(callback: (val) => {
+        setState(() {
+            string = val;
+            print('inside home_page '+string);
+          })
+        }
+      ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -60,9 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
           CategoriesView(),
           HeaderPage(_scrollController),
           SizedBox(height: 20),
+          CatalogsPage(),
           NewArrivals(),
           BestSelling(),
-          CatalogsPage(),
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: Image(

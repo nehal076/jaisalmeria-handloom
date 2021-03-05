@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jaisalmeria_handloom/models/cart.dart';
 import 'package:jaisalmeria_handloom/models/responses/product_details_model.dart';
 import 'package:jaisalmeria_handloom/models/wishlist.dart';
+import 'package:jaisalmeria_handloom/pages/comments.dart';
 import 'package:jaisalmeria_handloom/services/api_manager.dart';
 import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -442,10 +443,16 @@ _buildComments(BuildContext context) {
                       fontWeight: FontWeight.w500,
                       color: Colors.black54),
                 ),
-                Text(
-                  "View All",
-                  style: TextStyle(fontSize: 18.0, color: Colors.blue),
-                  textAlign: TextAlign.end,
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CommentPage()));
+                  },
+                  child: Text(
+                    "View All",
+                    style: TextStyle(fontSize: 18.0, color: Colors.blue),
+                    textAlign: TextAlign.end,
+                  ),
                 ),
               ],
             ),

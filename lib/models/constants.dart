@@ -13,4 +13,4 @@ const STATUS_FAILED = "PAYMENT_FAILED";
 const STATUS_CHECKSUM_FAILED = "PAYMENT_CHECKSUM_FAILED";
 
 // const BACKEND_URL = "http://ec2-3-83-238-202.compute-1.amazonaws.com:3000";
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "https://backend.jaisalmeriahandloom.com";

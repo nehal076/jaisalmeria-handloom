@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
   successDialog(snapshot) {
     // _saveUserId
     Future<LoginModal>.delayed(Duration.zero, () {
-      _saveUserId(snapshot.data.userId);
+      _saveUserId(snapshot.data._id);
       return Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => MyApp(user: snapshot.data)));
     }

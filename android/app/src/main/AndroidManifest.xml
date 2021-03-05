@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jaisalmeria_handloom.app">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
-        android:label="jaisalmeria_handloom"
+        android:label="Jaisalmeria Handloom"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/launcher_icon">
         <activity
