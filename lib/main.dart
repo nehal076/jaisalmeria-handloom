@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jaisalmeria_handloom/models/cart.dart';
 import 'package:jaisalmeria_handloom/models/responses/login_modal.dart';
 import 'package:jaisalmeria_handloom/models/wishlist.dart';
@@ -10,10 +9,8 @@ import 'package:jaisalmeria_handloom/pages/login_page.dart';
 import 'package:jaisalmeria_handloom/pages/sign_up.dart';
 import 'package:jaisalmeria_handloom/pages/user_settings.dart';
 import 'package:jaisalmeria_handloom/pages/wishlist_screen.dart';
-import 'package:jaisalmeria_handloom/widgets/app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'pages/home_page.dart';
 
 void main() {
@@ -23,6 +20,7 @@ void main() {
   //   systemNavigationBarIconBrightness: Brightness.dark,
   //   systemNavigationBarColor: Colors.black,
   // ));
+  //setPathUrlStrategy();
   runApp(MyApp());
 }
 
@@ -48,8 +46,8 @@ class _MyAppState extends State<MyApp> {
         )
       ],
       child: MaterialApp(
-        // darkTheme: ThemeData.dark(),
-        // themeMode: ThemeMode.system,
+        //darkTheme: ThemeData.dark(),
+        //themeMode: ThemeMode.system,
         title: 'Jaisalmeria Handloom',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

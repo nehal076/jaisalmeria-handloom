@@ -23,8 +23,8 @@ class ApiManager {
         body: jsonEncode(<String, String>{
           'firstName': firstName,
           'lastName': lastName,
-          'emailId': email,
-          'userPassword': userPassword,
+          'email': email,
+          'password': userPassword,
         })
       );
       print(response);
